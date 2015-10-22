@@ -17,8 +17,8 @@ PUT        /cart/:id                            controllers.CartController.updat
 DELETE     /cart/:id                            controllers.CartController.delete(id: Int)
 
 # Cart Item
-GET        /cart/:cartId/item                   controllers.CartItemController.list(cartId: Int)
-GET        /cart/:cartId/item/:itemId           controllers.CartItemController.retrieve(cartId: Int, itemId: Int)
+GET        /cart/:cartId/items                   controllers.CartItemController.list(cartId: Int)
+GET        /cart/:cartId/items/:itemId           controllers.CartItemController.retrieve(cartId: Int, itemId: Int)
 POST       /cart/:cartId/addItem                controllers.CartItemController.insert(cartId: Int)
 PUT        /cart/:cartId/updateItem/:itemId     controllers.CartItemController.update(cartId: Int, itemId: Int)
 DELETE     /cart/:cartId/deleteItem/:itemId     controllers.CartItemController.delete(cartId: Int, itemId: Int)

@@ -35,25 +35,25 @@ object CartItemController extends Controller {
 
   def update(cartId: Int, itemId: Int) = DBAction(parse.json) { implicit rs =>
     rs.request.body.validate[CartItem].map { cartItem =>
-      val q = cartItems.filter(_.cartId === cartId).filter(_.itemId === itemId)
+      val q = cartItems.filter(_.cartId === cartId)
       if (q.exists.run) {
         cartItems.update(cartItem)
         Ok(toJson(cartItem))
       }
       else {
-        BadRequest(Json.obj("status" -> "KO", "message" -> "cart item not found"))
+        BadRequest(Json.obj("status" -> "KO", "message" -> "cart not found"))
       }
     }.getOrElse(BadRequest("invalid json"))
   }
 
   def delete(cartId: Int, itemId: Int) = DBAction { implicit rs =>
-    val q = cartItems.filter(_.cartId === cartId).filter(_.itemId === itemId)
+    val q = cartItems.filter(_.cartId === cartId)
     if (q.exists.run) {
       q.delete
       Ok(Json.obj("status" -> "OK", "message" -> "cart item was deleted"))
     }
     else {
-      BadRequest(Json.obj("status" -> "KO", "message" -> "cart item not found"))
+      BadRequest(Json.obj("status" -> "KO", "message" -> "cart not found"))
     }
   }
 }
