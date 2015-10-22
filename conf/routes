@@ -1,0 +1,27 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Item
+GET        /item                                controllers.ItemController.list
+GET        /item/:id                            controllers.ItemController.retrieve(id: Int)
+POST       /item                                controllers.ItemController.insert
+PUT        /item/:id                            controllers.ItemController.update(id: Int)
+DELETE     /item/:id                            controllers.ItemController.delete(id: Int)
+
+# Cart
+#GET        /cart                                controllers.CartController.list
+#GET        /cart/:id                            controllers.CartController.retrieve(id: Int)
+#POST       /cart                                controllers.CartController.insert
+#PUT        /cart/:id                            controllers.CartController.update(id: Int)
+#DELETE     /cart/:id                            controllers.CartController.delete(id: Int)
+
+# Cart Item
+#GET        /cart/:cartId/item                   controllers.CartItemController.list(cartId: Int)
+#GET        /cart/:cartId/item/:itemId           controllers.CartItemController.retrieve(cartId: Int, itemId: Int)
+#POST       /cart/:cartId/addItem                controllers.CartItemController.insert(cartId: Int)
+#PUT        /cart/:cartId/updateItem/:itemId     controllers.CartItemController.update(cartId: Int, itemId: Int)
+#DELETE     /cart/:cartId/deleteItem/:itemId     controllers.CartItemController.delete(cartId: Int, itemId: Int)
+
+# Map static resources from the /public folder to the /assets URL path
+# GET     /assets/*file               controllers.Assets.versioned(path="/public", file)
