@@ -28,6 +28,10 @@ class ItemRestSpec extends PlaySpecification {
     }
 
     "update item bad request" in new WithApplication {
+      route(FakeRequest(POST, "/item",
+        FakeHeaders(Seq(CONTENT_TYPE -> Seq("application/json"))),
+        """{"id":101, "name":"test 101", "price":100, "stock":100}"""))(Writeable(_.getBytes, None)).get
+
       val item = route(FakeRequest(PUT, "/item/101")).get
       status(item) mustEqual BAD_REQUEST
     }
@@ -35,7 +39,7 @@ class ItemRestSpec extends PlaySpecification {
     "update item success" in new WithApplication {
       val result = route(FakeRequest(PUT, "/item/101",
         FakeHeaders(Seq(CONTENT_TYPE -> Seq("application/json"))),
-        """{"name":"test 101 updated"}"""))(Writeable(_.getBytes, None)).get
+        """{"id":101, "name":"Test 101 updated", "price":200, "stock":200}"""))(Writeable(_.getBytes, None)).get
       status(result) mustEqual OK
     }
 
